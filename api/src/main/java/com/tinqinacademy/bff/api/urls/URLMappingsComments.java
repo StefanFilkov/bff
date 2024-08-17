@@ -1,4 +1,4 @@
-package com.tinqinacademy.bff.urls;
+package com.tinqinacademy.bff.api.urls;
 
 public class URLMappingsComments {
 

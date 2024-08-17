@@ -1,4 +1,4 @@
-package com.tinqinacademy.configuration;
+package com.tinqinacademy.bff.domain.configuration;
 
 import feign.okhttp.OkHttpClient;
 import org.springframework.context.annotation.Bean;

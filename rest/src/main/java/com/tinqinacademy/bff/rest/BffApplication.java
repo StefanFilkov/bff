@@ -1,13 +1,11 @@
-package com.tinqinacademy.rest;
+package com.tinqinacademy.bff.rest;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableAdminServer
-@EnableFeignClients
+@EnableFeignClients(basePackages = "com.tinqinacademy.bff.domain")
 public class BffApplication {
 
     public static void main(String[] args) {
