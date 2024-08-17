@@ -83,11 +83,17 @@
         <dependency>
             <groupId>com.tinqinacademy.comments</groupId>
             <artifactId>rest-export</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.tinqinacademy.hotel</groupId>
+            <artifactId>rest-export</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tinquinacademy.authentication</groupId>
             <artifactId>rest-export</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
