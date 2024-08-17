@@ -8,5 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 @FeignClient(name = "authentication",
         url = "${auth.feign.client.url}",
         configuration = FeignConfiguration.class)
+
 public interface AuthenticationClient extends AuthenticationRestExport {
 }
