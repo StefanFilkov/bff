@@ -50,9 +50,9 @@ public class CreateRoomOperationProcessor extends BaseOperationProcessor impleme
 
                     CreateRoomInput hotelInput = objectMapperConvertor.convert(input, CreateRoomInput.class);
                     ResponseEntity<CreateRoomOutput> response = hotelClient.createRoom(hotelInput);
-                    CreateRoomOutput responseResult = response.getBody();
 
                     //TODO throws an exception
+                    CreateRoomOutput responseResult = response.getBody();
                     CreateRoomOutputBFF result = objectMapperConvertor.convert(responseResult, CreateRoomOutputBFF.class);
 
                     log.info("end of createRoom in bff with result {}",result);
