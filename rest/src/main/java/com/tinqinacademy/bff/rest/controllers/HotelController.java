@@ -1,6 +1,9 @@
 package com.tinqinacademy.bff.rest.controllers;
 
 import com.tinqinacademy.bff.api.errors.Errors;
+import com.tinqinacademy.bff.api.operations.hotel.bookroombyid.ReserveRoomByIdInputBFF;
+import com.tinqinacademy.bff.api.operations.hotel.bookroombyid.ReserveRoomByIdOperation;
+import com.tinqinacademy.bff.api.operations.hotel.bookroombyid.ReserveRoomByIdOutputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomOperation;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomOutputBFF;
@@ -14,6 +17,9 @@ import com.tinqinacademy.bff.api.urls.URLMappingsHotel;
 import com.tinqinacademy.bff.core.processors.hotel.CreateRoomOperationProcessor;
 import com.tinqinacademy.bff.domain.CommentsClient;
 
+import com.tinqinacademy.hotel.api.URLMappings;
+import com.tinqinacademy.hotel.api.operations.bookroombyid.ReserveRoomByIdInput;
+import com.tinqinacademy.hotel.api.operations.bookroombyid.ReserveRoomByIdOutput;
 import com.tinqinacademy.hotel.api.operations.getroombyid.GetRoomByIdInput;
 import io.vavr.control.Either;
 import org.springframework.http.HttpStatus;
@@ -28,19 +34,26 @@ public class HotelController extends BaseController {
     private final CreateRoomOperation createRoomOperation;
     private final GetRoomByIdOperation getRoomByIdOperation;
     private final GetFreeRoomsOperation getFreeRoomsOperation;
+    private final ReserveRoomByIdOperation reserveRoomByIdOperation;
 
-
-    public HotelController(CreateRoomOperation createRoomOperation, GetRoomByIdOperation getRoomByIdOperation, GetFreeRoomsOperation getFreeRoomsOperation) {
+    public HotelController(CreateRoomOperation createRoomOperation, GetRoomByIdOperation getRoomByIdOperation, GetFreeRoomsOperation getFreeRoomsOperation, ReserveRoomByIdOperation reserveRoomByIdOperation) {
         this.getRoomByIdOperation = getRoomByIdOperation;
 
 
         this.createRoomOperation = createRoomOperation;
         this.getFreeRoomsOperation = getFreeRoomsOperation;
+        this.reserveRoomByIdOperation = reserveRoomByIdOperation;
     }
 
     @GetMapping(URLMappingsHotel.GET_ROOM)
     public ResponseEntity<?> getRoom(GetFreeRoomsInputBFF input) {
         Either<Errors, GetFreeRoomsOutputBFF> result = getFreeRoomsOperation.process(input);
+        return handleResult(result);
+    }
+    @PostMapping(URLMappingsHotel.POST_BOOK_ROOM_BY_ID)
+    ResponseEntity<?> bookRoom(@RequestBody ReserveRoomByIdInputBFF input, @RequestParam String roomId){
+        input.setRoomId(roomId);
+        Either<Errors, ReserveRoomByIdOutputBFF> result = reserveRoomByIdOperation.process(input);
         return handleResult(result);
     }
 

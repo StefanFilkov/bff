@@ -1,5 +1,6 @@
 package com.tinqinacademy.bff.api.operations.hotel.bookroombyid;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tinqinacademy.bff.api.base.OperationInput;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,8 +18,7 @@ import java.time.LocalDate;
 @Builder
 @ToString
 public class ReserveRoomByIdInputBFF implements OperationInput {
-    @UUID
-    @NotBlank
+    @JsonIgnore
     private String roomId;
 
     @NotNull
@@ -31,6 +31,6 @@ public class ReserveRoomByIdInputBFF implements OperationInput {
     @Size(max = 15, message = "Name must be >0 and <16")
     private String lastName;
 
-    @Pattern(regexp="(^$|[0-9]{10})")
+    @Pattern(regexp = "(^$|[0-9]{10})")
     private String phone;
 }

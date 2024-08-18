@@ -25,15 +25,9 @@ import static io.vavr.API.*;
 @Slf4j
 public class GetFreeRoomsOperationProcessor extends BaseOperationProcessor implements GetFreeRoomsOperation {
 
-    private final HotelClient hotelClient;
-    private final ObjectMapperConvertor objectMapperConvertor;
 
     protected GetFreeRoomsOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, HotelClient hotelClient, ObjectMapperConvertor objectMapperConvertor) {
-        super(conversionService, validator, errorMapper);
-        this.hotelClient = hotelClient;
-
-
-        this.objectMapperConvertor = objectMapperConvertor;
+        super(conversionService, validator, errorMapper, hotelClient, objectMapperConvertor);
     }
 
     @Override

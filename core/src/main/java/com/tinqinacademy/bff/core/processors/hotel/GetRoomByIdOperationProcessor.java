@@ -1,7 +1,6 @@
 package com.tinqinacademy.bff.core.processors.hotel;
 
 import com.tinqinacademy.bff.api.errors.Errors;
-import com.tinqinacademy.bff.api.operations.hotel.getfreerooms.GetFreeRoomsOutputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.getroombyid.GetRoomByIdInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.getroombyid.GetRoomByIdOperation;
 import com.tinqinacademy.bff.api.operations.hotel.getroombyid.GetRoomByIdOutputBFF;
@@ -10,7 +9,6 @@ import com.tinqinacademy.bff.core.errormapper.ErrorMapper;
 import com.tinqinacademy.bff.core.exceptions.hotel.RoomNotFoundException;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
 import com.tinqinacademy.bff.domain.HotelClient;
-import com.tinqinacademy.hotel.api.operations.getfreerooms.GetFreeRoomsOutput;
 import com.tinqinacademy.hotel.api.operations.getroombyid.GetRoomByIdOutput;
 import io.vavr.Predicates;
 import io.vavr.control.Either;
@@ -25,13 +23,9 @@ import static io.vavr.API.*;
 @Slf4j
 public class GetRoomByIdOperationProcessor extends BaseOperationProcessor implements GetRoomByIdOperation {
 
-    private final HotelClient hotelClient;
-    private final ObjectMapperConvertor objectMapperConvertor;
 
     protected GetRoomByIdOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, HotelClient hotelClient, ObjectMapperConvertor objectMapperConvertor) {
-        super(conversionService, validator, errorMapper);
-        this.hotelClient = hotelClient;
-        this.objectMapperConvertor = objectMapperConvertor;
+        super(conversionService, validator, errorMapper, hotelClient, objectMapperConvertor);
     }
 
     @Override

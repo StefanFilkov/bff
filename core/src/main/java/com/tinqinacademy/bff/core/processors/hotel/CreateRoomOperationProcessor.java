@@ -4,21 +4,16 @@ import com.tinqinacademy.bff.api.errors.Errors;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomOperation;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomOutputBFF;
-import com.tinqinacademy.bff.api.operations.hotel.getfreerooms.GetFreeRoomsOutputBFF;
 import com.tinqinacademy.bff.core.converters.ObjectMapperConvertor;
 import com.tinqinacademy.bff.core.errormapper.ErrorMapper;
-import com.tinqinacademy.bff.core.exceptions.hotel.RoomNotFoundException;
 import com.tinqinacademy.bff.core.processors.BaseOperationProcessor;
 import com.tinqinacademy.bff.domain.HotelClient;
 import com.tinqinacademy.hotel.api.operations.createroom.CreateRoomInput;
 import com.tinqinacademy.hotel.api.operations.createroom.CreateRoomOutput;
-import com.tinqinacademy.hotel.api.operations.getfreerooms.GetFreeRoomsOutput;
-import io.vavr.Predicates;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
 import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.actuate.logging.LogFileWebEndpoint;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -29,14 +24,9 @@ import static io.vavr.API.*;
 @Slf4j
 public class CreateRoomOperationProcessor extends BaseOperationProcessor implements CreateRoomOperation {
 
-    private final HotelClient hotelClient;
-    private final ObjectMapperConvertor objectMapperConvertor;
-
 
     protected CreateRoomOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, HotelClient hotelClient, ObjectMapperConvertor objectMapperConvertor) {
-        super(conversionService, validator, errorMapper);
-        this.hotelClient = hotelClient;
-        this.objectMapperConvertor = objectMapperConvertor;
+        super(conversionService, validator, errorMapper, hotelClient, objectMapperConvertor);
     }
 
     @Override
