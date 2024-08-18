@@ -32,9 +32,9 @@ public class GuestInputBFF {
     @NonNull
     private String cardIssueAuthority;
 
-    @Nonnull
+
     private LocalDate endDate;
-    @Nonnull
+
     private LocalDate startDate;
 
     @Size(max = 20, message = "Invalid String")

@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ToString
-public class AddGuestInputBFF implements OperationInput {
-    List<@Valid GuestInputBFF> guests;
+public class AddGuestsInputBFF implements OperationInput {
+    List<GuestInputBFF> guests;
 
 }
