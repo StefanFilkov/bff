@@ -7,6 +7,9 @@ import com.tinqinacademy.bff.api.operations.hotel.bookroombyid.ReserveRoomByIdOu
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomOperation;
 import com.tinqinacademy.bff.api.operations.hotel.createroom.CreateRoomOutputBFF;
+import com.tinqinacademy.bff.api.operations.hotel.deletebookingbyid.DeleteBookingByIdInputBFF;
+import com.tinqinacademy.bff.api.operations.hotel.deletebookingbyid.DeleteBookingByIdOperation;
+import com.tinqinacademy.bff.api.operations.hotel.deletebookingbyid.DeleteBookingByIdOutputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.getfreerooms.GetFreeRoomsInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.getfreerooms.GetFreeRoomsOperation;
 import com.tinqinacademy.bff.api.operations.hotel.getfreerooms.GetFreeRoomsOutputBFF;
@@ -15,6 +18,7 @@ import com.tinqinacademy.bff.api.operations.hotel.getroombyid.GetRoomByIdOperati
 import com.tinqinacademy.bff.api.operations.hotel.getroombyid.GetRoomByIdOutputBFF;
 import com.tinqinacademy.bff.api.urls.URLMappingsHotel;
 import com.tinqinacademy.bff.core.processors.hotel.CreateRoomOperationProcessor;
+import com.tinqinacademy.bff.core.processors.hotel.DeleteBookingOperationProcessor;
 import com.tinqinacademy.bff.domain.CommentsClient;
 
 import com.tinqinacademy.hotel.api.URLMappings;
@@ -35,15 +39,16 @@ public class HotelController extends BaseController {
     private final GetRoomByIdOperation getRoomByIdOperation;
     private final GetFreeRoomsOperation getFreeRoomsOperation;
     private final ReserveRoomByIdOperation reserveRoomByIdOperation;
+    private final DeleteBookingByIdOperation deleteBookingOperation;
 
-    public HotelController(CreateRoomOperation createRoomOperation, GetRoomByIdOperation getRoomByIdOperation, GetFreeRoomsOperation getFreeRoomsOperation, ReserveRoomByIdOperation reserveRoomByIdOperation) {
-        this.getRoomByIdOperation = getRoomByIdOperation;
-
-
+    public HotelController(CreateRoomOperation createRoomOperation, GetRoomByIdOperation getRoomByIdOperation, GetFreeRoomsOperation getFreeRoomsOperation, ReserveRoomByIdOperation reserveRoomByIdOperation, DeleteBookingByIdOperation deleteBookingOperation) {
         this.createRoomOperation = createRoomOperation;
+        this.getRoomByIdOperation = getRoomByIdOperation;
         this.getFreeRoomsOperation = getFreeRoomsOperation;
         this.reserveRoomByIdOperation = reserveRoomByIdOperation;
+        this.deleteBookingOperation = deleteBookingOperation;
     }
+
 
     @GetMapping(URLMappingsHotel.GET_ROOM)
     public ResponseEntity<?> getRoom(GetFreeRoomsInputBFF input) {
@@ -63,6 +68,13 @@ public class HotelController extends BaseController {
                 .id(roomId).build();
 
         Either<Errors, GetRoomByIdOutputBFF> result = getRoomByIdOperation.process(input);
+        return handleResult(result);
+    }
+
+    @DeleteMapping(URLMappingsHotel.DELETE_BOOKING_BY_ID)
+    public ResponseEntity<?> deleteBooking(@PathVariable String bookingId) {
+        DeleteBookingByIdInputBFF input =DeleteBookingByIdInputBFF.builder().id(bookingId).build();
+        Either<Errors, DeleteBookingByIdOutputBFF> result = deleteBookingOperation.process(input);
         return handleResult(result);
     }
 
