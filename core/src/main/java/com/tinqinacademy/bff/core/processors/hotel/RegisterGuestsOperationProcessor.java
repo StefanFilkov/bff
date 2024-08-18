@@ -1,7 +1,6 @@
 package com.tinqinacademy.bff.core.processors.hotel;
 
 import com.tinqinacademy.bff.api.errors.Errors;
-import com.tinqinacademy.bff.api.operations.hotel.models.inputs.GuestInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.registerguests.AddGuestsInputBFF;
 import com.tinqinacademy.bff.api.operations.hotel.registerguests.AddGuestOperation;
 import com.tinqinacademy.bff.api.operations.hotel.registerguests.AddGuestsOutputBFF;
@@ -23,8 +22,8 @@ import static io.vavr.API.*;
 
 @Service
 @Slf4j
-public class RegisrterGuestsOperationProcessor extends BaseOperationProcessor implements AddGuestOperation {
-    protected RegisrterGuestsOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, HotelClient hotelClient, ObjectMapperConvertor objectMapperConvertor) {
+public class RegisterGuestsOperationProcessor extends BaseOperationProcessor implements AddGuestOperation {
+    protected RegisterGuestsOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, HotelClient hotelClient, ObjectMapperConvertor objectMapperConvertor) {
         super(conversionService, validator, errorMapper, hotelClient, objectMapperConvertor);
     }
 
