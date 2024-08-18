@@ -4,7 +4,7 @@ import com.tinqinacademy.bff.domain.configuration.FeignConfiguration;
 import com.tinqinacademy.hotel.restexport.HotelExport;
 import org.springframework.cloud.openfeign.FeignClient;
 
-@FeignClient(name = "comments",
+@FeignClient(name = "hotel",
         url = "${hotel.feign.client.url}",
         configuration = FeignConfiguration.class)
 

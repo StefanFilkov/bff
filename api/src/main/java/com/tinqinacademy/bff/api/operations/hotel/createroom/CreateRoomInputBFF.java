@@ -21,7 +21,7 @@ import java.util.List;
 public class CreateRoomInputBFF implements OperationInput {
 
 
-    private List< @BedSizeValidation String> beds;
+    private List<@BedSizeValidation String> beds;
 
     @BathroomTypeValidation
     private String bathroomType;

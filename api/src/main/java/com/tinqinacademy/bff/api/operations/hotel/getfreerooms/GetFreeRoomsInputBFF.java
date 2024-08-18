@@ -20,7 +20,6 @@ import java.util.List;
 @ToString
 public class GetFreeRoomsInputBFF implements OperationInput {
     @UUID
-    @NotBlank
     private String id;
 
     @NotNull

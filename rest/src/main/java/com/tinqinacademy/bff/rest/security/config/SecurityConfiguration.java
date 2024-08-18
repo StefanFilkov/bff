@@ -30,9 +30,9 @@ public class SecurityConfiguration {
                             )
                             .permitAll()
 
-//                            .requestMatchers(
-//                                    "/**"
-//                            ).permitAll()
+                            .requestMatchers(
+                                    "/**"
+                            ).permitAll()
                             ;
 
                     auth.anyRequest()
