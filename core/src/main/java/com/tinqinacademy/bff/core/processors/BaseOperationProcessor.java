@@ -3,7 +3,9 @@ package com.tinqinacademy.bff.core.processors;
 import com.tinqinacademy.bff.api.base.OperationInput;
 import com.tinqinacademy.bff.api.errors.Errors;
 import com.tinqinacademy.bff.api.errors.OperationError;
+import com.tinqinacademy.bff.core.converters.ObjectMapperConvertor;
 import com.tinqinacademy.bff.core.errormapper.ErrorMapper;
+import com.tinqinacademy.bff.domain.HotelClient;
 import io.vavr.control.Either;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -16,13 +18,17 @@ public abstract class BaseOperationProcessor {
     protected final ConversionService conversionService;
     protected final Validator validator;
     protected final ErrorMapper errorMapper;
+    protected final HotelClient hotelClient;
+    protected final ObjectMapperConvertor objectMapperConvertor;
 
-    protected BaseOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper) {
-
+    protected BaseOperationProcessor(ConversionService conversionService, Validator validator, ErrorMapper errorMapper, HotelClient hotelClient, ObjectMapperConvertor objectMapperConvertor) {
         this.conversionService = conversionService;
         this.validator = validator;
         this.errorMapper = errorMapper;
+        this.hotelClient = hotelClient;
+        this.objectMapperConvertor = objectMapperConvertor;
     }
+
 
     protected Either<Errors, ? extends OperationInput> validateInput(OperationInput input) {
         Set<ConstraintViolation<OperationInput>> violations = validator.validate(input);
