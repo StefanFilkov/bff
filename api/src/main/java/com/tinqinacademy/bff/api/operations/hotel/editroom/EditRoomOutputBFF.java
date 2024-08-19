@@ -11,6 +11,6 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class EditRoomOutputBFF implements OperationOutput {
+public class EditRoomOutputBFF implements OperationOutput, com.tinqinacademy.bff.api.base.OperationOutput {
     private final String id;
 }

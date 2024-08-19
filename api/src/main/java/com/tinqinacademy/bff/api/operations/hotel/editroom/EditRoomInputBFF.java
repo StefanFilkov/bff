@@ -1,7 +1,8 @@
 package com.tinqinacademy.bff.api.operations.hotel.editroom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.tinqinacademy.hotel.api.base.OperationInput;
+
+import com.tinqinacademy.bff.api.base.OperationInput;
 import com.tinqinacademy.hotel.api.validation.bathroomtype.BathroomTypeValidation;
 import com.tinqinacademy.hotel.api.validation.bedsize.BedSizeValidation;
 import jakarta.validation.constraints.Digits;

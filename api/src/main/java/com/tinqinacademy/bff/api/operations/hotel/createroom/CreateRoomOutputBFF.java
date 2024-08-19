@@ -1,10 +1,7 @@
 package com.tinqinacademy.bff.api.operations.hotel.createroom;
 
 import com.tinqinacademy.bff.api.base.OperationOutput;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,6 +11,8 @@ import java.util.UUID;
 @Setter
 @Builder
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreateRoomOutputBFF implements OperationOutput {
     private UUID id;
 

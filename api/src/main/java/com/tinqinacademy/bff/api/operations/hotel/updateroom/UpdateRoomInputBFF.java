@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import com.tinqinacademy.bff.api.base.OperationInput;
 import com.tinqinacademy.bff.api.validation.bathroomtype.BathroomTypeValidation;
+import com.tinqinacademy.bff.api.validation.bedsize.BedSizeValidation;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
@@ -25,7 +26,7 @@ public class UpdateRoomInputBFF implements OperationInput {
     @Max(value = 100, message = "cannot be more than 100")
     private Integer floor;
 
-    private List<@BathroomTypeValidation String> bedSize;
+    private List<@BedSizeValidation String> bedSize;
 
     @BathroomTypeValidation
     private String bathroomType;

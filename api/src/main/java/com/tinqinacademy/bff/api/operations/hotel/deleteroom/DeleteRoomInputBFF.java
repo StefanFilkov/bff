@@ -13,7 +13,6 @@ import org.hibernate.validator.constraints.UUID;
 @Builder
 @ToString
 public class DeleteRoomInputBFF implements OperationInput {
-    @UUID
-    @NotBlank
+
     private String id;
 }
