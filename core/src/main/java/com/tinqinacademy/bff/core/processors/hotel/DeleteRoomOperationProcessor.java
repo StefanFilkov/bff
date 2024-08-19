@@ -39,8 +39,8 @@ public class DeleteRoomOperationProcessor extends BaseOperationProcessor impleme
         return Try.of(() -> {
                     log.info("start of editRoom in bff with input {}", input);
 
-                    DeleteRoomInput hotelInput = objectMapperConvertor.convert(input, DeleteRoomInput.class);
-                    ResponseEntity<DeleteRoomOutput> response = hotelClient.deleteRoom(hotelInput);
+                    String roomId = input.getId();
+                    ResponseEntity<DeleteRoomOutput> response = hotelClient.deleteRoom(roomId);
 
                     DeleteRoomOutput responseResult = response.getBody();
                     DeleteRoomOutputBFF result = objectMapperConvertor.convert(responseResult, DeleteRoomOutputBFF.class);

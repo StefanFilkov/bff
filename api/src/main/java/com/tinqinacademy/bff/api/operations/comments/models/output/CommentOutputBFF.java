@@ -11,12 +11,13 @@ import java.util.UUID;
 @Getter
 @ToString
 public class CommentOutputBFF {
-    private UUID id;
+    private String id;
     private String content;
     private String authorFirstName;
     private String authorLastName;
     private LocalDate createdOn;
     private LocalDate updatedOn;
     private String lastEditedBy;
+    private String roomId;
 
 }
