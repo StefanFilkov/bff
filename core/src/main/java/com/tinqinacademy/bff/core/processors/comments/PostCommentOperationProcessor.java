@@ -41,7 +41,7 @@ public class PostCommentOperationProcessor extends BaseOperationProcessor implem
 
     private Either<Errors, PostCommentOutputBFF> postComment(PostCommentInputBFF input) {
         return Try.of(() -> {
-                    log.info("Start of getComments in bff with input {}", input);
+                    log.info("Start of postComment in bff with input {}", input);
 
                     PostCommentInput commentsInput = objectMapperConvertor.convert(input, PostCommentInput.class);
                     ResponseEntity<PostCommentOutput> response = commentsClient.postComment(input.getRoomId(), commentsInput);
@@ -49,7 +49,7 @@ public class PostCommentOperationProcessor extends BaseOperationProcessor implem
                     PostCommentOutput responseResult = response.getBody();
                     PostCommentOutputBFF result = objectMapperConvertor.convert(responseResult, PostCommentOutputBFF.class);
 
-                    log.info("End of getComments in bff with result {}", result);
+                    log.info("End of postComment in bff with result {}", result);
                     return result;
 
 

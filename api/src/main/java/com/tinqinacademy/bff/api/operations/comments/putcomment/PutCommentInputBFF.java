@@ -15,12 +15,12 @@ public class PutCommentInputBFF implements OperationInput {
 
     @JsonIgnore
     private String id;
-    @Size(min=0,max = 12, message = "String invalid")
+
     private String roomId;
     @Size(max = 15, message = "string must be >0 and <16")
     private String firstName;
     @Size(max = 15, message = "string must be >0 and <16")
     private String lastName;
-    @Size(max = 15, message = "string must be >0 and <16")
+    @Size(max = 150, message = "string must be >0 and <16")
     private String content;
 }
