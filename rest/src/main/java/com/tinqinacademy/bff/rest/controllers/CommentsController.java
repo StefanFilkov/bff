@@ -7,6 +7,9 @@ import com.tinqinacademy.bff.api.operations.comments.getcommentbyroom.GetComment
 import com.tinqinacademy.bff.api.operations.comments.postcomment.PostCommentInputBFF;
 import com.tinqinacademy.bff.api.operations.comments.postcomment.PostCommentOperation;
 import com.tinqinacademy.bff.api.operations.comments.postcomment.PostCommentOutputBFF;
+import com.tinqinacademy.bff.api.operations.comments.updatecomment.UpdateCommentInputBFF;
+import com.tinqinacademy.bff.api.operations.comments.updatecomment.UpdateCommentOperation;
+import com.tinqinacademy.bff.api.operations.comments.updatecomment.UpdateCommentOutputBFF;
 import com.tinqinacademy.bff.api.urls.URLMappingsComments;
 import com.tinqinacademy.comments.api.URLMappings;
 import com.tinqinacademy.comments.api.operations.getcommentbyroom.GetCommentsByRoomInput;
@@ -22,10 +25,12 @@ public class CommentsController extends BaseController {
 
     private final GetCommentsByRoomOperation getCommentsByRoomOperation;
     private final PostCommentOperation postCommentOperation;
+    private final UpdateCommentOperation updateCommentOperation;
 
-    public CommentsController(GetCommentsByRoomOperation getCommentsByRoomOperation, PostCommentOperation postCommentOperation) {
+    public CommentsController(GetCommentsByRoomOperation getCommentsByRoomOperation, PostCommentOperation postCommentOperation, UpdateCommentOperation updateCommentOperation) {
         this.getCommentsByRoomOperation = getCommentsByRoomOperation;
         this.postCommentOperation = postCommentOperation;
+        this.updateCommentOperation = updateCommentOperation;
     }
 
     @GetMapping(URLMappingsComments.GET_COMMENTS_BY_ROOM_ID)
@@ -41,6 +46,14 @@ public class CommentsController extends BaseController {
     ResponseEntity<?> postComment(@PathVariable String roomId, @RequestBody PostCommentInputBFF input) {
         input.setRoomId(roomId);
         Either<Errors, PostCommentOutputBFF> result = postCommentOperation.process(input);
+        return handleResult(result);
+    }
+
+    @PatchMapping(URLMappingsComments.PATCH_COMMENT)
+    ResponseEntity<?> patchComment(@PathVariable String commentId, @RequestBody UpdateCommentInputBFF input) {
+
+        input.setId(commentId);
+        Either<Errors, UpdateCommentOutputBFF> result = updateCommentOperation.process(input);
         return handleResult(result);
     }
 

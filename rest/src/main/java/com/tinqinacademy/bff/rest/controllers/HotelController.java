@@ -36,6 +36,7 @@ import com.tinqinacademy.hotel.api.URLMappings;
 import io.vavr.control.Either;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -165,6 +166,7 @@ public class HotelController extends BaseController {
         return handleResult(result);
     }
 
+    @PreAuthorize("ROLE_USER") //TODO
     @DeleteMapping(URLMappingsHotel.DELETE_ROOM)
     public ResponseEntity<?> deleteRoom(@PathVariable String roomId) {
         DeleteRoomInputBFF input = DeleteRoomInputBFF.builder().id(roomId).build();

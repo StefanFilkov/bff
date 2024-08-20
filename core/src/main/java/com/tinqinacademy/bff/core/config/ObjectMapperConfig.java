@@ -1,18 +1,19 @@
 package com.tinqinacademy.bff.core.config;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import feign.codec.Decoder;
-import feign.jackson.JacksonDecoder;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
 
 @Configuration
-public class ApplicationBeanConfiguration {
+public class ObjectMapperConfig {
 
+    @Primary
     @Bean
     public ObjectMapper objectMapper(){
         ObjectMapper mapper = new ObjectMapper();
@@ -23,8 +24,13 @@ public class ApplicationBeanConfiguration {
         return mapper;
     }
 
-//    @Bean
-//    public Decoder feignDecoder(ObjectMapper objectMapper) {
-//        return new JacksonDecoder(objectMapper);
-//    }
+    @Qualifier(value = "convertor")
+    @Bean
+    public ObjectMapper converterObjectMapper(){
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+        return mapper;
+    }
+
 }
